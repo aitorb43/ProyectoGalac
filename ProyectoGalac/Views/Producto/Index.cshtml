@@ -1,0 +1,36 @@
+﻿@model ProyectoGalac.Entidades.IndexViewModel
+@{
+    Layout = "_Layout";
+}
+
+@if (Model != null)
+{
+    <table class="table table-striped mt-5">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Descripcion</th>
+                <th>precio</th>
+                <th>Existencia</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var productos in Model.productos)
+            {
+                <tr>
+                    <td>@productos.Id</td>
+                    <td>@productos.Descripcion</td>
+                    <td>@productos.Precio</td>
+                    <td>@productos.Existencia</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}else{
+<h4>No hay productos registrados</h4>
+}
+@if(Model != null)
+{
+     Html.RenderPartial("_paginador", Model);
+}
+

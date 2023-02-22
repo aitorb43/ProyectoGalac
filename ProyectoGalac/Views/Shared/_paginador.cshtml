@@ -1,0 +1,32 @@
+﻿@model ProyectoGalac.Entidades.BaseModelo
+
+@{
+    Layout = "_Layout";
+    var cantidadPaginas = (int)Math.Ceiling((double)Model.TotalDeRegistros / Model.RegistrosPorPagina);
+}
+
+<!--Funcionalidad: Anterior y siguiente-->
+
+<ul class="pagination">
+    @if (Model.PaginaActual == 1)
+    {
+
+        <li class="disabled btn btn-primary m-1">@Html.ActionLink("Anterior", null, new { pagina = 1}, new {style =" color: white ;"}) </li>
+    }
+    else
+    {
+
+        <li class=" btn btn-primary m-1">@Html.ActionLink( "Anterior", null, new { pagina = Model.PaginaActual - 1}, new {style =" color: white ;"}) </li>
+    }
+
+    @if (Model.PaginaActual == cantidadPaginas)
+    {
+
+        <li class="disabled btn btn-primary m-1">@Html.ActionLink("Siguiente", null, new { pagina = cantidadPaginas}, new {style =" color: white ;"})</li>
+    }
+    else
+    {
+
+        <li class=" btn btn-primary m-1">@Html.ActionLink("Siguiente", null,  new { pagina = Model.PaginaActual + 1}, new {style =" color: white ;"})</li>
+    }
+</ul>
